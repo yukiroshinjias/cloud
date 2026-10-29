@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Электрика W124</title>
+  <meta name="description" content="Электросхемы Mercedes-Benz W124 по системам.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../mods/mods.css">
+  <style>
+    .wrap { max-width: 1040px; }
+    .search {
+      width: 100%;
+      margin: 24px 0 0;
+      padding: 12px 16px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      color: var(--fg);
+      font: inherit;
+      font-size: 16px;
+    }
+    .search:focus { outline: none; border-color: var(--accent); }
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .toc a {
+      font-size: 13px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--muted);
+    }
+    .toc a:hover { border-color: var(--accent); color: var(--fg); }
+    .sheet { padding: 32px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+    .sheet .code { font-size: 12px; letter-spacing: .3em; color: var(--accent); }
+    .sheet h2 { font-family: "Playfair Display", serif; font-weight: 500; font-size: 26px; margin: 4px 0 4px; }
+    .sheet p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+    .sheet img { display: block; width: 100%; height: auto; background: #fff; }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .none { display: none; color: var(--muted); padding: 32px 0; }
+    main { padding-bottom: 88px; }
+  </style>
+</head>
+<body>
+
+  <nav class="top"><div class="wrap"><a href="../">← W124</a></div></nav>
+
+  <header class="page">
+    <div class="wrap">
+      <p class="eyebrow">Справочник</p>
+      <h1>Электрика</h1>
+      <p class="meta">Электросхемы W124 по системам. Нажми на схему, чтобы открыть её в полном размере.</p>
+      <input class="search" id="q" type="search" placeholder="Поиск: фары, замок, стеклоподъёмник, генератор…" autocomplete="off">
+      <nav class="toc" id="toc"></nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="sheets">
+    <section class="sheet" id="s01" data-k="легенда обозначения масса заземление аккумулятор замок зажигания стартер генератор зарядка контрольная лампа муфта вентилятора радиатор термодатчик обогреватель жиклеров омывателя">
+      <div class="code">Лист 01</div>
+      <h2>Пуск и зарядка</h2>
+      <p>Обозначения и точки массы · система пуска и зарядки · муфта вентилятора радиатора · обогрев жиклёров омывателя</p>
+      <a href="01.jpg" target="_blank"><img src="01.jpg" alt="Схема: обозначения, пуск и зарядка, муфта вентилятора" width="800" height="657" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s02" data-k="освещение салона плафон багажник бардачок вещевой ящик выключатель двери стеклоочиститель стеклоомыватель дворники омыватель фар многофункциональный переключатель комбинированное реле">
+      <div class="code">Лист 02</div>
+      <h2>Салон и дворники</h2>
+      <p>Освещение салона, багажника и вещевого ящика · стеклоочиститель и омыватель</p>
+      <a href="02.jpg" target="_blank"><img src="02.jpg" alt="Схема: освещение салона, стеклоочиститель и омыватель" width="800" height="652" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s03" data-k="зеркала электропривод подогрев зеркал магнитола радио антенна центральный замок пневмонасос исполнительный механизм натяжитель ремня безопасности">
+      <div class="code">Лист 03</div>
+      <h2>Зеркала, магнитола, замок</h2>
+      <p>Зеркала с электроприводом и подогревом · магнитола и антенна · центральный замок · натяжители ремней</p>
+      <a href="03.jpg" target="_blank"><img src="03.jpg" alt="Схема: зеркала, магнитола, центральный замок, натяжители ремней" width="800" height="654" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s04" data-k="наружное освещение фары ближний дальний габариты противотуманные фонари номерной знак переключатель света блок управления освещением">
+      <div class="code">Лист 04</div>
+      <h2>Фары и фонари</h2>
+      <p>Переключатель света · блок управления освещением · фары, задние фонари, подсветка номера</p>
+      <a href="04.jpg" target="_blank"><img src="04.jpg" alt="Схема: наружное освещение" width="800" height="654" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s05" data-k="указатели поворота поворотники аварийная сигнализация аварийка стоп-сигнал стопы задний ход реле поворотов">
+      <div class="code">Лист 05</div>
+      <h2>Поворотники и стопы</h2>
+      <p>Указатели поворота · аварийная сигнализация · стоп-сигналы · фонари заднего хода</p>
+      <a href="05.jpg" target="_blank"><img src="05.jpg" alt="Схема: указатели поворота, аварийка, стоп-сигналы, задний ход" width="800" height="652" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s06" data-k="комбинация приборов приборка тахометр спидометр датчик температуры топлива уровня масла давления масла тормозной жидкости колодок омывателя охлаждающей жидкости контрольные лампы">
+      <div class="code">Лист 06</div>
+      <h2>Приборы и датчики</h2>
+      <p>Комбинация приборов · датчики уровня топлива, масла, жидкостей · износ колодок · стояночный тормоз</p>
+      <a href="06.jpg" target="_blank"><img src="06.jpg" alt="Схема: комбинация приборов и датчики" width="800" height="654" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s07" data-k="очиститель фар стеклоочиститель фар вентилятор отопителя печка резистор обогрев заднего стекла прикуриватель звуковой сигнал гудок">
+      <div class="code">Лист 07</div>
+      <h2>Печка, обогрев, сигнал</h2>
+      <p>Очистители фар · вентилятор отопителя · обогрев заднего стекла · прикуриватель и звуковой сигнал</p>
+      <a href="07.jpg" target="_blank"><img src="07.jpg" alt="Схема: очистители фар, вентилятор отопителя, обогрев стекла, прикуриватель и сигнал" width="800" height="654" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s08" data-k="климат автоматический обогрев климат-контроль теплообменник циркуляционный насос клапан стеклоподъемники стеклоподъёмники электростеклоподъемники">
+      <div class="code">Лист 08</div>
+      <h2>Климат и стеклоподъёмники</h2>
+      <p>Система автоматического обогрева · электростеклоподъёмники всех дверей</p>
+      <a href="08.jpg" target="_blank"><img src="08.jpg" alt="Схема: автоматический обогрев, электростеклоподъёмники" width="962" height="776" loading="lazy"></a>
+    </section>
+
+    <section class="sheet" id="s09" data-k="двигатель мотор зажигание ezl ke-jetronic инжектор впрыск топливный насос бензонасос реле свечи катушка распределитель лямбда зонд дроссель расходомер холостой ход диагностический разъем">
+      <div class="code">Лист 09</div>
+      <h2>Двигатель: EZL и KE-Jetronic</h2>
+      <p>Зажигание EZL · впрыск KE-Jetronic · топливный насос и реле · лямбда-зонд · датчики двигателя</p>
+      <a href="09.jpg" target="_blank"><img src="09.jpg" alt="Схема: зажигание EZL и впрыск KE-Jetronic" width="800" height="652" loading="lazy"></a>
+    </section>
+
+    <p class="none" id="none">Ничего не нашлось. Попробуй другое слово.</p>
+  </main>
+
+  <footer>
+    Неофициальная фан-страница. Не связана с Mercedes-Benz Group AG.
+  </footer>
+
+  <script>
+    const sheets = [...document.querySelectorAll('.sheet')];
+    const toc = document.getElementById('toc');
+    sheets.forEach(s => {
+      const a = document.createElement('a');
+      a.href = '#' + s.id;
+      a.textContent = s.querySelector('h2').textContent;
+      toc.appendChild(a);
+    });
+    const norm = t => t.toLowerCase().replace(/ё/g, 'е');
+    document.getElementById('q').addEventListener('input', e => {
+      const q = norm(e.target.value.trim());
+      let shown = 0;
+      sheets.forEach(s => {
+        const text = norm(s.dataset.k + ' ' + s.textContent);
+        const hit = !q || q.split(/\s+/).every(w => text.includes(w));
+        s.style.display = hit ? '' : 'none';
+        if (hit) shown++;
+      });
+      document.getElementById('none').style.display = shown ? 'none' : 'block';
+    });
+  </script>
+
+</body>
+</html>
