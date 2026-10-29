@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Демо-сайты</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #f6efe3; --card: #fff; --ink: #2b2118; --muted: #7a6a58; --line: #dccbb0; --accent: #1f5f8b; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #16130f; --card: #211c16; --ink: #f1e8da; --muted: #a8977f; --line: #3a3127; --accent: #5fa8d8; }
+    }
+    :root[data-theme="dark"] { --bg: #16130f; --card: #211c16; --ink: #f1e8da; --muted: #a8977f; --line: #3a3127; --accent: #5fa8d8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Manrope, system-ui, sans-serif; line-height: 1.6; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 56px 16px; }
+    h1 { margin: 0 0 8px; font-size: 36px; }
+    .lead { color: var(--muted); margin: 0 0 32px; }
+    .card { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px 24px; text-decoration: none; color: inherit; margin-bottom: 12px; transition: border-color .2s, transform .2s; }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card b { font-size: 20px; color: var(--accent); }
+    .card p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Демо-сайты</h1>
+    <p class="lead">Примеры сайтов для показа клиентам. Все названия, цены и контакты вымышлены.</p>
+    <a class="card" href="guesthouse/"><b>Гостевой дом →</b><p>Namuna Hovli: номера, удобства, что рядом, отзывы, форма бронирования. Три языка: RU, EN, UZ.</p></a>
+  </div>
+</body>
+</html>
