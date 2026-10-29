@@ -8,231 +8,415 @@
   <meta name="description" content="Демо-сайт гостевого дома в старом городе Бухары.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --sand: #f6efe3;
-      --sand-2: #ede2cf;
-      --ink: #2b2118;
-      --muted: #7a6a58;
-      --tile: #1f5f8b;
-      --tile-2: #2f86b8;
-      --gold: #c8933a;
-      --line: #dccbb0;
+      --cream: #f7f1e6;
+      --cream-2: #efe5d3;
+      --ink: #1d1712;
+      --muted: #77685a;
+      --lapis: #10324a;
+      --lapis-2: #174a6b;
+      --turq: #2b8fb3;
+      --gold: #c99a45;
+      --gold-2: #e3bf7a;
+      --line: #e0d2bb;
+      --radius: 18px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--sand); color: var(--ink); font-family: Manrope, system-ui, sans-serif; line-height: 1.6; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: Manrope, system-ui, sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
     a { color: inherit; }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-    h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 700; line-height: 1.1; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    .serif { font-family: "Cormorant Garamond", serif; }
+    h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 600; line-height: 1.05; margin: 0; }
 
-    .demo-bar { background: var(--ink); color: var(--sand); text-align: center; font-size: 13px; padding: 8px 16px; }
-    .demo-bar b { color: var(--gold); }
+    .demo-bar { background: var(--ink); color: #d9cdb8; text-align: center; font-size: 12.5px; padding: 7px 16px; }
+    .demo-bar b { color: var(--gold-2); }
 
-    /* ---------- Шапка ---------- */
-    .nav { position: sticky; top: 0; z-index: 10; background: rgba(246, 239, 227, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-    .nav .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
-    .logo { font-family: "Cormorant Garamond", serif; font-size: 24px; font-weight: 700; text-decoration: none; color: var(--tile); }
-    .menu { display: flex; gap: 20px; margin-left: auto; font-size: 14px; }
-    .menu a { text-decoration: none; color: var(--muted); }
-    .menu a:hover { color: var(--tile); }
-    .langs { display: flex; gap: 4px; }
-    .langs button { border: 1px solid var(--line); background: transparent; padding: 4px 8px; font: inherit; font-size: 12px; font-weight: 700; color: var(--muted); cursor: pointer; border-radius: 4px; }
-    .langs button.on { background: var(--tile); border-color: var(--tile); color: #fff; }
-    @media (max-width: 760px) { .menu { display: none; } .langs { margin-left: auto; } }
+    /* ---------- Навигация ---------- */
+    .nav { position: absolute; left: 0; right: 0; z-index: 20; color: #fff; }
+    .nav.fixed { position: fixed; top: 0; background: rgba(16, 50, 74, .92); backdrop-filter: blur(10px); box-shadow: 0 8px 30px rgba(0,0,0,.15); }
+    .nav .wrap { display: flex; align-items: center; gap: 28px; height: 76px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo svg { width: 34px; height: 34px; color: var(--gold-2); }
+    .logo span { white-space: nowrap; font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 700; letter-spacing: .02em; }
+    .menu { display: flex; gap: 26px; margin-left: auto; font-size: 14px; font-weight: 500; }
+    .menu a { text-decoration: none; opacity: .85; }
+    .menu a:hover { opacity: 1; color: var(--gold-2); }
+    .langs { display: flex; gap: 2px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 3px; }
+    .langs button { border: 0; background: transparent; color: #fff; font: inherit; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer; opacity: .75; }
+    .langs button.on { background: var(--gold); opacity: 1; }
+    .nav .btn { padding: 11px 20px; font-size: 14px; }
+    @media (max-width: 900px) { .menu, .nav .btn { display: none; } .langs { margin-left: auto; } }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; font: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold { background: var(--gold); color: #fff; box-shadow: 0 10px 30px rgba(201, 154, 69, .35); }
+    .btn-gold:hover { background: #b8893a; }
+    .btn-line { color: #fff; border: 1px solid rgba(255,255,255,.55); }
+    .btn-line:hover { background: rgba(255,255,255,.12); }
 
     /* ---------- Обложка ---------- */
-    .hero {
-      position: relative;
-      color: #fff;
-      padding: 96px 0 112px;
-      background:
-        linear-gradient(180deg, rgba(20, 40, 60, .55), rgba(20, 40, 60, .85)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.18' stroke-width='1.2'%3E%3Cpath d='M40 4l10 26 26 10-26 10-10 26-10-26L4 40l26-10z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0l20 20M80 0L60 20M0 80l20-20M80 80L60 60'/%3E%3C/g%3E%3C/svg%3E"),
-        linear-gradient(135deg, var(--tile) 0%, #123a57 100%);
-      overflow: hidden;
-    }
-    .hero .wrap { position: relative; }
-    .hero .kicker { font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
-    .hero h1 { font-size: clamp(44px, 8vw, 84px); margin: 0; }
-    .hero p.sub { font-size: clamp(17px, 2.2vw, 21px); max-width: 560px; margin: 16px 0 32px; opacity: .92; }
-    .btn { display: inline-block; padding: 14px 26px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
-    .btn-gold { background: var(--gold); color: #fff; }
-    .btn-gold:hover { background: #b38030; }
-    .btn-ghost { border: 1px solid rgba(255,255,255,.6); color: #fff; margin-left: 8px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 48px; font-size: 14px; }
-    .badges b { display: block; font-family: "Cormorant Garamond", serif; font-size: 32px; color: var(--gold); line-height: 1; }
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url("img/hero.jpg") center 35% / cover; transform: scale(1.08); animation: zoom 18s ease-out forwards; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 30, 45, .55) 0%, rgba(10, 30, 45, .15) 35%, rgba(10, 30, 45, .85) 100%); }
+    @keyframes zoom { to { transform: scale(1); } }
+    .hero .wrap { position: relative; z-index: 1; padding-top: 140px; padding-bottom: 150px; width: 100%; }
+    .kicker { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold-2); font-weight: 700; margin: 0 0 18px; }
+    .kicker::before { content: ""; width: 38px; height: 1px; background: currentColor; }
+    .hero h1 { font-size: clamp(56px, 10vw, 128px); font-weight: 600; letter-spacing: -.01em; }
+    .hero h1 em { font-style: italic; color: var(--gold-2); font-weight: 500; }
+    .hero p.sub { font-size: clamp(17px, 2vw, 21px); max-width: 580px; margin: 20px 0 34px; color: rgba(255,255,255,.88); }
+    .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-    section { padding: 80px 0; }
-    .eyebrow { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 8px; }
-    section h2 { font-size: clamp(34px, 5vw, 48px); margin: 0 0 12px; color: var(--tile); }
-    .lead { color: var(--muted); max-width: 640px; margin: 0 0 40px; font-size: 17px; }
-    .alt { background: var(--sand-2); }
+    /* панель бронирования поверх обложки */
+    .quick { position: relative; z-index: 2; margin-top: -72px; }
+    .quick form { background: #fff; border-radius: var(--radius); box-shadow: 0 30px 60px rgba(16, 50, 74, .18); padding: 18px; display: grid; grid-template-columns: repeat(3, 1fr) auto; gap: 12px; align-items: end; }
+    .quick label { display: grid; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 6px 12px; border-right: 1px solid var(--line); }
+    .quick label:nth-child(3) { border-right: 0; }
+    .quick input, .quick select { border: 0; padding: 4px 0; font: inherit; font-size: 16px; font-weight: 600; color: var(--ink); background: transparent; letter-spacing: 0; text-transform: none; width: 100%; }
+    .quick input:focus, .quick select:focus { outline: none; }
+    @media (max-width: 760px) {
+      .quick form { grid-template-columns: 1fr 1fr; }
+      .quick label { border-right: 0; border-bottom: 1px solid var(--line); }
+      .quick label:nth-child(3) { grid-column: 1 / -1; }
+      .quick .btn { grid-column: 1 / -1; justify-content: center; }
+    }
+
+    section { padding: 120px 0; }
+    @media (max-width: 760px) { section { padding: 80px 0; } }
+    .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin: 0 0 14px; }
+    .h2 { font-size: clamp(40px, 5.5vw, 64px); color: var(--lapis); }
+    .h2 em { font-style: italic; color: var(--gold); font-weight: 500; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 620px; margin: 20px 0 0; }
+    .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 56px; }
+
+    /* ---------- О доме ---------- */
+    .about { display: grid; grid-template-columns: 1.05fr 1fr; gap: 72px; align-items: center; }
+    .about-pics { position: relative; padding: 0 0 60px 0; }
+    .about-pics .main { border-radius: var(--radius); aspect-ratio: 4 / 5; object-fit: cover; width: 85%; box-shadow: 0 30px 60px rgba(0,0,0,.15); }
+    .about-pics .small { position: absolute; right: 0; bottom: 0; width: 48%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); border: 8px solid var(--cream); }
+    .about-pics .stamp { position: absolute; left: -18px; top: 32px; width: 120px; height: 120px; border-radius: 50%; background: var(--lapis); color: #fff; display: grid; place-content: center; text-align: center; box-shadow: 0 16px 40px rgba(16,50,74,.35); }
+    .about-pics .stamp b { font-family: "Cormorant Garamond", serif; font-size: 38px; line-height: 1; color: var(--gold-2); }
+    .about-pics .stamp span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+    .stats b { display: block; font-family: "Cormorant Garamond", serif; font-size: 44px; line-height: 1; color: var(--lapis); }
+    .stats span { font-size: 13px; color: var(--muted); }
+    @media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 48px; } .about-pics .stamp { left: 8px; } }
+
+    /* полоса изразцов */
+    .tiles { height: 90px; background: url("img/tiles.jpg") center / 640px auto repeat-x; filter: saturate(1.1); opacity: .95; }
 
     /* ---------- Номера ---------- */
-    .rooms { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .room { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
-    .room .pic { aspect-ratio: 4 / 3; display: grid; place-items: center; color: rgba(255,255,255,.9); font-family: "Cormorant Garamond", serif; font-size: 22px; }
-    .room:nth-child(1) .pic { background: linear-gradient(135deg, #c8933a, #8a5a1e); }
-    .room:nth-child(2) .pic { background: linear-gradient(135deg, #2f86b8, #1f5f8b); }
-    .room:nth-child(3) .pic { background: linear-gradient(135deg, #7d8c5a, #4c5a30); }
-    .room .body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .room h3 { font-size: 26px; margin: 0 0 6px; }
-    .room p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
-    .room .price { margin-top: auto; display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 14px; }
-    .room .price b { font-size: 26px; color: var(--tile); }
-    .room .price span { color: var(--muted); font-size: 13px; }
+    .rooms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    @media (max-width: 960px) { .rooms { grid-template-columns: 1fr; max-width: 560px; } }
+    .room { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: 0 1px 0 var(--line); transition: transform .35s, box-shadow .35s; display: flex; flex-direction: column; }
+    .room:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(16, 50, 74, .14); }
+    .room .ph { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+    .room .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+    .room:hover .ph img { transform: scale(1.06); }
+    .room .tag { position: absolute; left: 16px; top: 16px; background: rgba(255,255,255,.92); color: var(--lapis); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px; }
+    .room .body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+    .room h3 { font-size: 32px; color: var(--lapis); }
+    .room p { color: var(--muted); font-size: 15px; margin: 8px 0 18px; }
+    .room ul { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .room li { font-size: 12.5px; font-weight: 600; background: var(--cream); padding: 5px 11px; border-radius: 999px; color: var(--lapis-2); }
+    .room .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 18px; border-top: 1px solid var(--line); }
+    .room .price b { font-family: "Cormorant Garamond", serif; font-size: 36px; color: var(--lapis); line-height: 1; }
+    .room .price span { display: block; font-size: 12px; color: var(--muted); }
+    .room .more { font-size: 14px; font-weight: 700; color: var(--gold); text-decoration: none; }
+
+    /* ---------- Ночная Бухара ---------- */
+    .band { position: relative; color: #fff; text-align: center; padding: 160px 0; background: url("img/night.jpg") center / cover fixed; }
+    .band::before { content: ""; position: absolute; inset: 0; background: rgba(8, 22, 34, .55); }
+    .band .wrap { position: relative; }
+    .band blockquote { margin: 0 auto; max-width: 820px; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.2; }
+    .band cite { display: block; margin-top: 22px; font-style: normal; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-2); }
+    @media (hover: none) { .band { background-attachment: scroll; } }
 
     /* ---------- Удобства ---------- */
-    .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .feat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
-    .feat .ico { font-size: 28px; }
-    .feat h3 { font-family: Manrope, sans-serif; font-size: 16px; margin: 8px 0 4px; }
-    .feat p { margin: 0; color: var(--muted); font-size: 14px; }
+    .feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    @media (max-width: 900px) { .feats { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .feats { grid-template-columns: 1fr; } }
+    .feat { background: var(--cream); padding: 36px 32px; transition: background .3s; }
+    .feat:hover { background: #fff; }
+    .feat svg { width: 40px; height: 40px; color: var(--gold); }
+    .feat h3 { font-family: Manrope, sans-serif; font-size: 17px; font-weight: 700; margin: 18px 0 6px; color: var(--lapis); }
+    .feat p { margin: 0; color: var(--muted); font-size: 14.5px; }
 
     /* ---------- Рядом ---------- */
-    .near { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 32px; }
-    .near li { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px dashed var(--line); }
-    .near li span { color: var(--muted); }
+    .dark { background: var(--lapis); color: #fff; }
+    .dark .h2 { color: #fff; }
+    .dark .lead { color: rgba(255,255,255,.7); }
+    .places { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 16px; }
+    .place { position: relative; border-radius: var(--radius); overflow: hidden; }
+    .place:first-child { grid-row: span 2; }
+    .place img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+    .place:hover img { transform: scale(1.06); }
+    .place::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(5, 18, 28, .85)); }
+    .place .cap { position: absolute; left: 22px; right: 22px; bottom: 18px; z-index: 1; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+    .place h3 { font-size: 30px; }
+    .place .walk { flex: none; font-size: 12px; font-weight: 700; background: var(--gold); padding: 6px 12px; border-radius: 999px; }
+    @media (max-width: 860px) { .places { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 220px 220px; } .place:first-child { grid-column: span 2; grid-row: auto; } }
+    @media (max-width: 520px) { .places { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: 240px; } .place:first-child { grid-column: auto; } }
+    .transfer { display: flex; flex-wrap: wrap; gap: 12px 40px; margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.8); font-size: 15px; }
+    .transfer b { color: var(--gold-2); }
 
     /* ---------- Отзывы ---------- */
-    .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .review { background: #fff; border-radius: 12px; padding: 24px; border: 1px solid var(--line); }
-    .review .stars { color: var(--gold); letter-spacing: 2px; }
-    .review p { font-family: "Cormorant Garamond", serif; font-size: 21px; line-height: 1.35; margin: 10px 0 14px; }
-    .review small { color: var(--muted); }
-    .sample { display: inline-block; font-size: 12px; background: var(--ink); color: var(--sand); padding: 2px 8px; border-radius: 4px; margin-bottom: 20px; }
+    .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .reviews { grid-template-columns: 1fr; } }
+    .review { background: #fff; border-radius: var(--radius); padding: 34px; position: relative; }
+    .review::before { content: "“"; position: absolute; right: 26px; top: 6px; font-family: "Cormorant Garamond", serif; font-size: 110px; color: var(--cream-2); line-height: 1; }
+    .review .stars { color: var(--gold); letter-spacing: 3px; font-size: 15px; }
+    .review p { position: relative; font-family: "Cormorant Garamond", serif; font-size: 23px; line-height: 1.35; margin: 14px 0 22px; color: var(--ink); }
+    .review .who { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .review .ava { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--lapis); color: var(--gold-2); font-weight: 700; }
+    .review small { display: block; color: var(--muted); }
+    .sample { display: inline-block; font-size: 12px; font-weight: 600; background: var(--cream-2); color: var(--muted); padding: 5px 12px; border-radius: 999px; }
+    .score { text-align: right; }
+    .score b { font-family: "Cormorant Garamond", serif; font-size: 64px; line-height: 1; color: var(--lapis); }
+    .score span { display: block; font-size: 13px; color: var(--muted); }
 
     /* ---------- Бронирование ---------- */
-    .book { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    @media (max-width: 760px) { .book { grid-template-columns: 1fr; } }
-    form { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; gap: 14px; }
-    label { font-size: 13px; font-weight: 700; color: var(--muted); display: grid; gap: 6px; }
-    input, select { font: inherit; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--sand); color: var(--ink); width: 100%; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .contacts p { margin: 0 0 10px; }
-    .contacts .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .book { position: relative; overflow: hidden; background: var(--cream-2); }
+    .book::before { content: ""; position: absolute; inset: 0; background: url("img/suzani.jpg") center / cover; opacity: .12; }
+    .book .wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media (max-width: 900px) { .book .wrap { grid-template-columns: 1fr; gap: 40px; } }
+    .contact-list { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 16px; }
+    .contact-list li { display: flex; gap: 14px; align-items: center; font-size: 16px; }
+    .contact-list svg { width: 22px; height: 22px; color: var(--gold); flex: none; }
+    .msgs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
     .btn-wa { background: #25d366; color: #fff; }
     .btn-tg { background: #2aa3df; color: #fff; }
-    .note { font-size: 13px; color: var(--muted); }
+    .card-form { background: #fff; border-radius: var(--radius); padding: 36px; box-shadow: 0 30px 60px rgba(16, 50, 74, .14); display: grid; gap: 16px; }
+    .card-form h3 { font-size: 34px; color: var(--lapis); margin-bottom: 4px; }
+    .card-form label { display: grid; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .card-form input, .card-form select { font: inherit; font-size: 16px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--cream); color: var(--ink); width: 100%; text-transform: none; letter-spacing: 0; }
+    .card-form input:focus, .card-form select:focus { outline: 2px solid var(--turq); outline-offset: 1px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card-form .btn { justify-content: center; }
+    .note { font-size: 13px; color: var(--muted); margin: 0; text-align: center; }
 
-    footer { background: var(--ink); color: rgba(246,239,227,.7); padding: 32px 0; font-size: 13px; text-align: center; }
+    footer { background: var(--ink); color: rgba(247, 241, 230, .6); padding: 56px 0 40px; font-size: 13px; }
+    footer .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    footer .logo span { color: #fff; }
+    footer .credits { margin-top: 24px; font-size: 11.5px; line-height: 1.7; }
+    footer .credits a { color: rgba(247, 241, 230, .8); }
+
+    /* появление при прокрутке */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .hero-bg { animation: none; transform: none; } }
   </style>
 </head>
 <body>
 
   <div class="demo-bar" data-t="demo"></div>
 
-  <header class="nav">
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-star" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 2l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/><circle cx="20" cy="20" r="5"/></g></symbol>
+    <symbol id="i-tea" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 16h22v6a11 11 0 0 1-22 0z"/><path d="M29 18h3a4 4 0 0 1 0 8h-4"/><path d="M13 6c0 3 3 3 3 6M19 6c0 3 3 3 3 6"/><path d="M5 35h28"/></g></symbol>
+    <symbol id="i-car" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 25v-5l4-8h22l4 8v5z"/><path d="M5 25v4h5v-4M30 25v4h5v-4"/><circle cx="11" cy="21" r="1.5"/><circle cx="29" cy="21" r="1.5"/></g></symbol>
+    <symbol id="i-map" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 9l10-4 12 4 10-4v26l-10 4-12-4-10 4z"/><path d="M14 5v26M26 9v26"/></g></symbol>
+    <symbol id="i-wifi" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 15a23 23 0 0 1 32 0M9 21a16 16 0 0 1 22 0M14 27a9 9 0 0 1 12 0"/><circle cx="20" cy="32" r="1.6" fill="currentColor"/></g></symbol>
+    <symbol id="i-snow" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 4v32M6 12l28 16M6 28l28-16"/><path d="M16 6l4 4 4-4M16 34l4-4 4 4"/></g></symbol>
+    <symbol id="i-leaf" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 32C8 16 18 8 34 6c-2 16-10 26-26 26z"/><path d="M8 32L22 18"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  </svg>
+
+  <header class="nav" id="nav">
     <div class="wrap">
-      <a class="logo" href="#">Namuna Hovli</a>
+      <a class="logo" href="#top"><svg><use href="#i-star"/></svg><span>Namuna Hovli</span></a>
       <nav class="menu">
+        <a href="#about" data-t="m_about"></a>
         <a href="#rooms" data-t="m_rooms"></a>
         <a href="#feats" data-t="m_feats"></a>
         <a href="#near" data-t="m_near"></a>
-        <a href="#book" data-t="m_book"></a>
+        <a href="#reviews" data-t="m_rev"></a>
       </nav>
-      <div class="langs">
-        <button data-l="ru">RU</button><button data-l="en">EN</button><button data-l="uz">UZ</button>
-      </div>
+      <div class="langs"><button data-l="ru">RU</button><button data-l="en">EN</button><button data-l="uz">UZ</button></div>
+      <a class="btn btn-gold" href="#book" data-t="cta"></a>
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="top" style="padding:0">
+    <div class="hero-bg" role="img" aria-label="Po-i-Kalyan, Bukhara"></div>
     <div class="wrap">
       <p class="kicker" data-t="kicker"></p>
-      <h1>Namuna Hovli</h1>
+      <h1 data-t="h1"></h1>
       <p class="sub" data-t="sub"></p>
-      <a class="btn btn-gold" href="#book" data-t="cta"></a><a class="btn btn-ghost" href="#rooms" data-t="cta2"></a>
-      <div class="badges">
-        <div><b>5</b><span data-t="b1"></span></div>
-        <div><b>3 min</b><span data-t="b2"></span></div>
-        <div><b>24/7</b><span data-t="b3"></span></div>
+      <div class="actions">
+        <a class="btn btn-gold" href="#book" data-t="cta"></a>
+        <a class="btn btn-line" href="#rooms" data-t="cta2"></a>
       </div>
     </div>
   </section>
+
+  <div class="quick wrap">
+    <form id="quick">
+      <label><span data-t="f_in"></span><input type="date" name="in"></label>
+      <label><span data-t="f_out"></span><input type="date" name="out"></label>
+      <label><span data-t="f_guests"></span><select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+      <button class="btn btn-gold" type="submit" data-t="check"></button>
+    </form>
+  </div>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="about-pics reveal">
+        <img class="main" src="img/courtyard.jpg" alt="" loading="lazy">
+        <img class="small" src="img/gallery-1.jpg" alt="" loading="lazy">
+        <div class="stamp"><b>XIX</b><span data-t="century"></span></div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow" data-t="m_about"></p>
+        <h2 class="h2" data-t="about_h"></h2>
+        <p class="lead" data-t="about_p1"></p>
+        <p class="lead" data-t="about_p2"></p>
+        <div class="stats">
+          <div><b>5</b><span data-t="s1"></span></div>
+          <div><b>3’</b><span data-t="s2"></span></div>
+          <div><b>9.6</b><span data-t="s3"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tiles" role="presentation"></div>
 
   <section id="rooms">
     <div class="wrap">
-      <p class="eyebrow" data-t="m_rooms"></p>
-      <h2 data-t="rooms_h"></h2>
-      <p class="lead" data-t="rooms_p"></p>
+      <div class="head reveal">
+        <div>
+          <p class="eyebrow" data-t="m_rooms"></p>
+          <h2 class="h2" data-t="rooms_h"></h2>
+        </div>
+        <p class="lead" data-t="rooms_p" style="max-width:420px"></p>
+      </div>
       <div class="rooms">
-        <article class="room"><div class="pic" data-t="r1"></div><div class="body"><h3 data-t="r1"></h3><p data-t="r1_p"></p><div class="price"><b>$35</b><span data-t="night"></span></div></div></article>
-        <article class="room"><div class="pic" data-t="r2"></div><div class="body"><h3 data-t="r2"></h3><p data-t="r2_p"></p><div class="price"><b>$50</b><span data-t="night"></span></div></div></article>
-        <article class="room"><div class="pic" data-t="r3"></div><div class="body"><h3 data-t="r3"></h3><p data-t="r3_p"></p><div class="price"><b>$70</b><span data-t="night"></span></div></div></article>
+        <article class="room reveal">
+          <div class="ph"><img src="img/room-standard.jpg" alt="" loading="lazy"><span class="tag" data-t="r1_tag"></span></div>
+          <div class="body">
+            <h3 data-t="r1"></h3><p data-t="r1_p"></p>
+            <ul><li data-t="a_bath"></li><li data-t="a_ac"></li><li>Wi-Fi</li></ul>
+            <div class="foot"><div class="price"><b>$35</b><span data-t="night"></span></div><a class="more" href="#book" data-t="book_it"></a></div>
+          </div>
+        </article>
+        <article class="room reveal">
+          <div class="ph"><img src="img/room-deluxe.jpg" alt="" loading="lazy"><span class="tag" data-t="r2_tag"></span></div>
+          <div class="body">
+            <h3 data-t="r2"></h3><p data-t="r2_p"></p>
+            <ul><li data-t="a_bath"></li><li data-t="a_ac"></li><li data-t="a_court"></li></ul>
+            <div class="foot"><div class="price"><b>$50</b><span data-t="night"></span></div><a class="more" href="#book" data-t="book_it"></a></div>
+          </div>
+        </article>
+        <article class="room reveal">
+          <div class="ph"><img src="img/room-family.jpg" alt="" loading="lazy"><span class="tag" data-t="r3_tag"></span></div>
+          <div class="body">
+            <h3 data-t="r3"></h3><p data-t="r3_p"></p>
+            <ul><li data-t="a_2rooms"></li><li data-t="a_bath"></li><li data-t="a_ac"></li></ul>
+            <div class="foot"><div class="price"><b>$70</b><span data-t="night"></span></div><a class="more" href="#book" data-t="book_it"></a></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="feats" class="alt">
+  <div class="band">
     <div class="wrap">
-      <p class="eyebrow" data-t="m_feats"></p>
-      <h2 data-t="feats_h"></h2>
-      <div class="feats">
-        <div class="feat"><div class="ico">🍳</div><h3 data-t="f1"></h3><p data-t="f1_p"></p></div>
-        <div class="feat"><div class="ico">🚗</div><h3 data-t="f2"></h3><p data-t="f2_p"></p></div>
-        <div class="feat"><div class="ico">🕌</div><h3 data-t="f3"></h3><p data-t="f3_p"></p></div>
-        <div class="feat"><div class="ico">📶</div><h3 data-t="f4"></h3><p data-t="f4_p"></p></div>
-        <div class="feat"><div class="ico">❄️</div><h3 data-t="f5"></h3><p data-t="f5_p"></p></div>
-        <div class="feat"><div class="ico">🧺</div><h3 data-t="f6"></h3><p data-t="f6_p"></p></div>
+      <blockquote class="reveal"><span data-t="quote"></span><cite data-t="quote_c"></cite></blockquote>
+    </div>
+  </div>
+
+  <section id="feats">
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <p class="eyebrow" data-t="m_feats"></p>
+          <h2 class="h2" data-t="feats_h"></h2>
+        </div>
+      </div>
+      <div class="feats reveal">
+        <div class="feat"><svg><use href="#i-tea"/></svg><h3 data-t="f1"></h3><p data-t="f1_p"></p></div>
+        <div class="feat"><svg><use href="#i-car"/></svg><h3 data-t="f2"></h3><p data-t="f2_p"></p></div>
+        <div class="feat"><svg><use href="#i-map"/></svg><h3 data-t="f3"></h3><p data-t="f3_p"></p></div>
+        <div class="feat"><svg><use href="#i-wifi"/></svg><h3 data-t="f4"></h3><p data-t="f4_p"></p></div>
+        <div class="feat"><svg><use href="#i-snow"/></svg><h3 data-t="f5"></h3><p data-t="f5_p"></p></div>
+        <div class="feat"><svg><use href="#i-leaf"/></svg><h3 data-t="f6"></h3><p data-t="f6_p"></p></div>
       </div>
     </div>
   </section>
 
-  <section id="near">
+  <section id="near" class="dark">
     <div class="wrap">
-      <p class="eyebrow" data-t="m_near"></p>
-      <h2 data-t="near_h"></h2>
-      <p class="lead" data-t="near_p"></p>
-      <ul class="near">
-        <li><b data-t="n1"></b><span data-t="n1_d"></span></li>
-        <li><b data-t="n2"></b><span data-t="n2_d"></span></li>
-        <li><b data-t="n3"></b><span data-t="n3_d"></span></li>
-        <li><b data-t="n4"></b><span data-t="n4_d"></span></li>
-        <li><b data-t="n5"></b><span data-t="n5_d"></span></li>
-        <li><b data-t="n6"></b><span data-t="n6_d"></span></li>
-      </ul>
+      <div class="head reveal">
+        <div>
+          <p class="eyebrow" data-t="m_near"></p>
+          <h2 class="h2" data-t="near_h"></h2>
+        </div>
+        <p class="lead" data-t="near_p" style="max-width:420px"></p>
+      </div>
+      <div class="places reveal">
+        <div class="place"><img src="img/minaret.jpg" alt="" loading="lazy"><div class="cap"><h3 data-t="n1"></h3><span class="walk" data-t="n1_d"></span></div></div>
+        <div class="place"><img src="img/domes.jpg" alt="" loading="lazy"><div class="cap"><h3 data-t="n2"></h3><span class="walk" data-t="n2_d"></span></div></div>
+        <div class="place"><img src="img/ark.jpg" alt="" loading="lazy"><div class="cap"><h3 data-t="n3"></h3><span class="walk" data-t="n3_d"></span></div></div>
+        <div class="place" style="grid-column: span 2"><img src="img/night.jpg" alt="" loading="lazy"><div class="cap"><h3 data-t="n4"></h3><span class="walk" data-t="n4_d"></span></div></div>
+      </div>
+      <div class="transfer reveal">
+        <span>✈ <span data-t="t1"></span> <b data-t="t1_d"></b></span>
+        <span>🚆 <span data-t="t2"></span> <b data-t="t2_d"></b></span>
+        <span>🚗 <span data-t="t3"></span> <b data-t="t3_d"></b></span>
+      </div>
     </div>
   </section>
 
-  <section class="alt">
+  <section id="reviews">
     <div class="wrap">
-      <p class="eyebrow" data-t="rev_e"></p>
-      <h2 data-t="rev_h"></h2>
-      <span class="sample" data-t="rev_sample"></span>
+      <div class="head reveal">
+        <div>
+          <p class="eyebrow" data-t="m_rev"></p>
+          <h2 class="h2" data-t="rev_h"></h2>
+          <p style="margin-top:16px"><span class="sample" data-t="rev_sample"></span></p>
+        </div>
+        <div class="score"><b>9.6</b><span data-t="score"></span></div>
+      </div>
       <div class="reviews">
-        <div class="review"><div class="stars">★★★★★</div><p data-t="rv1"></p><small data-t="rv1_a"></small></div>
-        <div class="review"><div class="stars">★★★★★</div><p data-t="rv2"></p><small data-t="rv2_a"></small></div>
-        <div class="review"><div class="stars">★★★★★</div><p data-t="rv3"></p><small data-t="rv3_a"></small></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p data-t="rv1"></p><div class="who"><span class="ava">A</span><div><b data-t="rv1_n"></b><small data-t="rv1_a"></small></div></div></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p data-t="rv2"></p><div class="who"><span class="ava">M</span><div><b data-t="rv2_n"></b><small data-t="rv2_a"></small></div></div></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><p data-t="rv3"></p><div class="who"><span class="ava">D</span><div><b data-t="rv3_n"></b><small data-t="rv3_a"></small></div></div></div>
       </div>
     </div>
   </section>
 
-  <section id="book">
-    <div class="wrap book">
-      <div class="contacts">
+  <section id="book" class="book">
+    <div class="wrap">
+      <div class="reveal">
         <p class="eyebrow" data-t="m_book"></p>
-        <h2 data-t="book_h"></h2>
+        <h2 class="h2" data-t="book_h"></h2>
         <p class="lead" data-t="book_p"></p>
-        <p>📍 <span data-t="addr"></span></p>
-        <p>📞 +998 XX XXX XX XX</p>
-        <div class="btns">
+        <ul class="contact-list">
+          <li><svg><use href="#i-pin"/></svg><span data-t="addr"></span></li>
+          <li><svg><use href="#i-phone"/></svg><span>+998 XX XXX XX XX</span></li>
+          <li><svg><use href="#i-clock"/></svg><span data-t="hours"></span></li>
+        </ul>
+        <div class="msgs">
           <a class="btn btn-wa" href="#" data-demo>WhatsApp</a>
           <a class="btn btn-tg" href="#" data-demo>Telegram</a>
         </div>
       </div>
-      <form id="form">
+      <form class="card-form reveal" id="form">
+        <h3 data-t="form_h"></h3>
         <label><span data-t="f_name"></span><input name="name" required></label>
-        <div class="row">
+        <div class="row2">
           <label><span data-t="f_in"></span><input name="in" type="date" required></label>
           <label><span data-t="f_out"></span><input name="out" type="date" required></label>
         </div>
-        <div class="row">
-          <label><span data-t="f_room"></span>
-            <select name="room"><option data-t="r1"></option><option data-t="r2"></option><option data-t="r3"></option></select>
-          </label>
+        <div class="row2">
+          <label><span data-t="f_room"></span><select name="room"><option data-t="r1"></option><option data-t="r2"></option><option data-t="r3"></option></select></label>
           <label><span data-t="f_guests"></span><input name="guests" type="number" min="1" max="6" value="2"></label>
         </div>
         <button class="btn btn-gold" type="submit" data-t="f_send"></button>
@@ -241,108 +425,146 @@
     </div>
   </section>
 
-  <footer data-t="foot"></footer>
+  <footer>
+    <div class="wrap">
+      <div class="top">
+        <a class="logo" href="#top"><svg style="width:30px;height:30px;color:var(--gold-2)"><use href="#i-star"/></svg><span>Namuna Hovli</span></a>
+        <span data-t="foot"></span>
+      </div>
+      <div class="credits"><span data-t="credits"></span>
+        Po-i-Kalyan Courtyard — RK, <a href="https://commons.wikimedia.org/wiki/File:Po-i-Kalyan_Courtyard.jpg">CC BY-SA 4.0</a> ·
+        Faizulla Khojayev House-Museum — MarjonaKhidirova, <a href="https://commons.wikimedia.org/wiki/File:Faizulla_Khojayev_House-Museum_02.jpg">CC BY-SA 4.0</a> ·
+        Poi Kalon Ensemble — Fulvio Spada, <a href="https://commons.wikimedia.org/wiki/File:Poi_Kalon_Ensemble,_Bukhara_(4933989373).jpg">CC BY-SA 2.0</a> ·
+        Tok-i-Sarrafon — Davide Mauro, <a href="https://commons.wikimedia.org/wiki/File:Tok-i-Sarrafon.jpg">CC BY-SA 4.0</a> ·
+        Ark of Bukhara — Petar Milošević, <a href="https://commons.wikimedia.org/wiki/File:Ark_of_Bukhara_(%D0%A6%D0%B8%D1%82%D0%B0%D0%B4%D0%B5%D0%BB%D1%8C_%D0%90%D1%80%D0%BA._Buxoro_arki).jpg">CC BY-SA 4.0</a> ·
+        Bukhara Biennial 2025 — Koshkinhome, <a href="https://commons.wikimedia.org/wiki/File:Bukhara_Biennial_2025_Bukhara_Uzbekistan_Khusen_Rustamov_01.jpg">CC BY 4.0</a> ·
+        Mir-i-Arab madrasa detail — Faqscl, <a href="https://commons.wikimedia.org/wiki/File:Bukhara_Mir-i-Arab_madrasa_outside_entrance_detail.JPG">CC BY-SA 3.0</a> ·
+        Suzani embroidery — Ji-Elle, <a href="https://commons.wikimedia.org/wiki/File:Boukhara-Broderie_suzani_en_cours.jpg">CC BY-SA 4.0</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const T = {
       ru: {
-        demo: '<b>Демо-сайт</b> — пример для показа клиентам. Название, цены и контакты вымышленные, бронирование не работает.',
-        m_rooms: 'Номера', m_feats: 'Удобства', m_near: 'Рядом', m_book: 'Бронирование',
+        demo: '<b>Демо-сайт</b> — пример для показа клиентам. Название, цены, отзывы и контакты вымышленные; фото — иллюстрации из Wikimedia Commons.',
+        m_about: 'О доме', m_rooms: 'Номера', m_feats: 'Удобства', m_near: 'Рядом', m_rev: 'Отзывы', m_book: 'Бронирование',
+        cta: 'Забронировать', cta2: 'Смотреть номера', check: 'Проверить даты',
         kicker: 'Гостевой дом · Старый город Бухары',
-        sub: 'Традиционный дворик с айваном, расписные потолки и тишина в трёх минутах от Ляби-Хауза.',
-        cta: 'Забронировать', cta2: 'Смотреть номера',
-        b1: 'номеров', b2: 'до Ляби-Хауза', b3: 'на связи',
-        rooms_h: 'Уютные номера в старом доме', rooms_p: 'Все номера с собственной ванной, кондиционером и завтраком во дворике.',
-        r1: 'Стандарт', r1_p: 'Для одного-двух гостей. Двуспальная или две раздельные кровати.',
-        r2: 'Делюкс', r2_p: 'Просторный номер с расписным потолком и окнами во двор.',
-        r3: 'Семейный', r3_p: 'До 4 гостей: две комнаты, удобно для семьи с детьми.',
-        night: 'за ночь, с завтраком',
-        feats_h: 'Всё, что нужно в путешествии',
-        f1: 'Домашний завтрак', f1_p: 'Свежие лепёшки, фрукты, сладости и чай во дворике.',
+        h1: 'Namuna <em>Hovli</em>',
+        sub: 'Старинный дворик с айваном, расписные потолки и тишина — в трёх минутах от Ляби-Хауза.',
+        century: 'век',
+        about_h: 'Дом, где время <em>замедляется</em>',
+        about_p1: 'Мы бережно восстановили традиционный бухарский дом: резные колонны, ганч на стенах, деревянные потолки ручной росписи.',
+        about_p2: 'Утро начинается с чая и горячих лепёшек во дворике, а вечером отсюда пешком до подсвеченных куполов и минаретов.',
+        s1: 'уютных номеров', s2: 'до Ляби-Хауза', s3: 'средняя оценка',
+        rooms_h: 'Номера с <em>характером</em>', rooms_p: 'Каждый номер — со своей ванной, кондиционером и завтраком во дворике.',
+        r1: 'Стандарт', r1_tag: 'До 2 гостей', r1_p: 'Тёплый номер с национальным текстилем — всё для спокойного отдыха после прогулок.',
+        r2: 'Делюкс', r2_tag: 'Хит', r2_p: 'Просторный номер с расписным потолком и окнами во внутренний двор.',
+        r3: 'Семейный люкс', r3_tag: 'До 4 гостей', r3_p: 'Две комнаты с резными нишами — удобно семье или компании друзей.',
+        a_bath: 'Своя ванная', a_ac: 'Кондиционер', a_court: 'Вид во двор', a_2rooms: '2 комнаты',
+        night: 'за ночь с завтраком', book_it: 'Выбрать →',
+        quote: '«Бухара — не город, который смотришь. Это город, в котором живёшь».', quote_c: 'Ночная Бухара · 2 минуты от дома',
+        feats_h: 'Всё, чтобы вы <em>отдыхали</em>',
+        f1: 'Домашний завтрак', f1_p: 'Свежие лепёшки, фрукты, местные сладости и чай во дворике.',
         f2: 'Трансфер', f2_p: 'Встретим в аэропорту или на вокзале, отвезём в Самарканд и Хиву.',
         f3: 'Экскурсии', f3_p: 'Подберём гида на русском, английском и других языках.',
-        f4: 'Бесплатный Wi-Fi', f4_p: 'Быстрый интернет во всех номерах и во дворе.',
+        f4: 'Быстрый Wi-Fi', f4_p: 'Бесплатный интернет во всех номерах и во дворе.',
         f5: 'Кондиционер', f5_p: 'В каждом номере — летом в Бухаре без него никак.',
-        f6: 'Прачечная', f6_p: 'Постираем и погладим вещи за небольшую плату.',
-        near_h: 'Вся Бухара — пешком', near_p: 'Дом стоит в тихом переулке старого города. Главные памятники — в нескольких минутах.',
-        n1: 'Ляби-Хауз', n1_d: '3 мин', n2: 'Торговые купола', n2_d: '5 мин', n3: 'Пои-Калян', n3_d: '10 мин',
-        n4: 'Арк', n4_d: '15 мин', n5: 'Вокзал (Каган)', n5_d: '25 мин на машине', n6: 'Аэропорт', n6_d: '15 мин на машине',
-        rev_e: 'Отзывы', rev_h: 'Что говорят гости', rev_sample: 'Пример оформления — не настоящие отзывы',
-        rv1: '«Как будто живёшь в музее, но с горячим душем и вкуснейшим завтраком».', rv1_a: 'Пример отзыва · Россия',
-        rv2: '«Хозяева встретили ночью на вокзале и всё показали. Вернёмся!»', rv2_a: 'Пример отзыва · Германия',
-        rv3: '«Тихо, чисто, а до Ляби-Хауза — пара минут пешком».', rv3_a: 'Пример отзыва · Казахстан',
-        book_h: 'Забронируйте напрямую', book_p: 'Без комиссии сайтов бронирования — пишите в WhatsApp или Telegram, ответим быстро.',
-        addr: 'Бухара, старый город (адрес вымышленный)',
-        f_name: 'Ваше имя', f_in: 'Заезд', f_out: 'Выезд', f_room: 'Номер', f_guests: 'Гостей', f_send: 'Отправить заявку',
+        f6: 'Тихий дворик', f6_p: 'Тень виноградника, айван и топчан для вечернего чая.',
+        near_h: 'Вся Бухара — <em>пешком</em>', near_p: 'Дом стоит в тихом переулке старого города. Главные памятники — в нескольких минутах.',
+        n1: 'Пои-Калян', n1_d: '10 мин пешком', n2: 'Торговые купола', n2_d: '5 мин', n3: 'Арк', n3_d: '15 мин', n4: 'Ночная Бухара', n4_d: 'рядом',
+        t1: 'Аэропорт', t1_d: '15 мин', t2: 'Вокзал Каган', t2_d: '25 мин', t3: 'Самарканд', t3_d: '3,5 ч трансфером',
+        rev_h: 'Что говорят <em>гости</em>', rev_sample: 'Пример оформления — не настоящие отзывы', score: 'пример рейтинга',
+        rv1: 'Как будто живёшь в музее, но с горячим душем и вкуснейшим завтраком.', rv1_n: 'Анна', rv1_a: 'Пример · Россия',
+        rv2: 'Хозяева встретили ночью на вокзале и всё показали. Обязательно вернёмся!', rv2_n: 'Markus', rv2_a: 'Пример · Германия',
+        rv3: 'Тихо, чисто, а до Ляби-Хауза — пара минут пешком. Лучший выбор в Бухаре.', rv3_n: 'Динара', rv3_a: 'Пример · Казахстан',
+        book_h: 'Бронируйте <em>напрямую</em>', book_p: 'Без комиссии сайтов бронирования — лучшая цена и быстрый ответ в мессенджере.',
+        addr: 'Бухара, старый город (адрес вымышленный)', hours: 'Отвечаем с 8:00 до 23:00',
+        form_h: 'Заявка на бронь', f_name: 'Ваше имя', f_in: 'Заезд', f_out: 'Выезд', f_room: 'Номер', f_guests: 'Гостей', f_send: 'Отправить заявку',
         f_note: 'Заявка придёт хозяину в Telegram или WhatsApp.',
         demo_alert: 'Это демо-сайт: на настоящем сайте заявка уйдёт хозяину в Telegram/WhatsApp.',
-        foot: '© Namuna Hovli — демо-сайт гостевого дома. Все данные вымышлены.'
+        foot: 'Демо-сайт гостевого дома. Все данные вымышлены.', credits: 'Фото: Wikimedia Commons —'
       },
       en: {
-        demo: '<b>Demo website</b> — an example for clients. Name, prices and contacts are fictional, booking does not work.',
-        m_rooms: 'Rooms', m_feats: 'Amenities', m_near: 'Nearby', m_book: 'Booking',
+        demo: '<b>Demo website</b> — an example for clients. Name, prices, reviews and contacts are fictional; photos are illustrations from Wikimedia Commons.',
+        m_about: 'About', m_rooms: 'Rooms', m_feats: 'Amenities', m_near: 'Nearby', m_rev: 'Reviews', m_book: 'Booking',
+        cta: 'Book now', cta2: 'See rooms', check: 'Check dates',
         kicker: 'Guesthouse · Old Town of Bukhara',
-        sub: 'A traditional courtyard house with painted ceilings and quiet nights, three minutes from Lyabi-Hauz.',
-        cta: 'Book now', cta2: 'See rooms',
-        b1: 'rooms', b2: 'to Lyabi-Hauz', b3: 'always in touch',
-        rooms_h: 'Cozy rooms in a historic house', rooms_p: 'Every room has a private bathroom, air conditioning and breakfast in the courtyard.',
-        r1: 'Standard', r1_p: 'For one or two guests. Double or twin beds.',
-        r2: 'Deluxe', r2_p: 'A spacious room with a hand-painted ceiling and windows to the courtyard.',
-        r3: 'Family', r3_p: 'Up to 4 guests: two rooms, great for families with children.',
-        night: 'per night, breakfast included',
-        feats_h: 'Everything you need for your trip',
-        f1: 'Homemade breakfast', f1_p: 'Fresh bread, fruit, sweets and tea in the courtyard.',
+        h1: 'Namuna <em>Hovli</em>',
+        sub: 'A historic courtyard house with painted ceilings and quiet nights — three minutes from Lyabi-Hauz.',
+        century: 'century',
+        about_h: 'A house where time <em>slows down</em>',
+        about_p1: 'We carefully restored a traditional Bukhara home: carved columns, ganch plaster and hand-painted wooden ceilings.',
+        about_p2: 'Mornings start with tea and warm bread in the courtyard; evenings are a short walk to illuminated domes and minarets.',
+        s1: 'cozy rooms', s2: 'to Lyabi-Hauz', s3: 'average rating',
+        rooms_h: 'Rooms with <em>character</em>', rooms_p: 'Every room has a private bathroom, air conditioning and breakfast in the courtyard.',
+        r1: 'Standard', r1_tag: 'Up to 2 guests', r1_p: 'A warm room with local textiles — everything you need to rest after a day of walking.',
+        r2: 'Deluxe', r2_tag: 'Most popular', r2_p: 'A spacious room with a hand-painted ceiling and windows onto the courtyard.',
+        r3: 'Family suite', r3_tag: 'Up to 4 guests', r3_p: 'Two rooms with carved niches — perfect for families or friends.',
+        a_bath: 'Private bath', a_ac: 'Air conditioning', a_court: 'Courtyard view', a_2rooms: '2 rooms',
+        night: 'per night, breakfast incl.', book_it: 'Select →',
+        quote: '“Bukhara is not a city you look at. It is a city you live in.”', quote_c: 'Bukhara at night · 2 minutes away',
+        feats_h: 'Everything for your <em>rest</em>',
+        f1: 'Homemade breakfast', f1_p: 'Fresh bread, fruit, local sweets and tea in the courtyard.',
         f2: 'Transfers', f2_p: 'Airport and station pick-up, rides to Samarkand and Khiva.',
-        f3: 'Tours', f3_p: 'We will find a guide speaking your language.',
-        f4: 'Free Wi-Fi', f4_p: 'Fast internet in every room and the courtyard.',
+        f3: 'Tours', f3_p: 'We will find a guide who speaks your language.',
+        f4: 'Fast Wi-Fi', f4_p: 'Free internet in every room and the courtyard.',
         f5: 'Air conditioning', f5_p: 'In every room — essential in a Bukhara summer.',
-        f6: 'Laundry', f6_p: 'Washing and ironing for a small fee.',
-        near_h: 'All of Bukhara on foot', near_p: 'The house sits in a quiet lane of the old town. The main sights are minutes away.',
-        n1: 'Lyabi-Hauz', n1_d: '3 min', n2: 'Trading domes', n2_d: '5 min', n3: 'Po-i-Kalyan', n3_d: '10 min',
-        n4: 'Ark fortress', n4_d: '15 min', n5: 'Railway station (Kagan)', n5_d: '25 min by car', n6: 'Airport', n6_d: '15 min by car',
-        rev_e: 'Reviews', rev_h: 'What guests say', rev_sample: 'Layout example — not real reviews',
-        rv1: '"Like living in a museum, but with a hot shower and a delicious breakfast."', rv1_a: 'Sample review · Russia',
-        rv2: '"The hosts met us at the station at night and showed us around. We will be back!"', rv2_a: 'Sample review · Germany',
-        rv3: '"Quiet, clean, and Lyabi-Hauz is just a couple of minutes away."', rv3_a: 'Sample review · Kazakhstan',
-        book_h: 'Book directly', book_p: 'No booking-site fees — message us on WhatsApp or Telegram, we reply fast.',
-        addr: 'Bukhara, old town (fictional address)',
-        f_name: 'Your name', f_in: 'Check-in', f_out: 'Check-out', f_room: 'Room', f_guests: 'Guests', f_send: 'Send request',
+        f6: 'Quiet courtyard', f6_p: 'Grapevine shade, an aivan and a tapchan for evening tea.',
+        near_h: 'All of Bukhara <em>on foot</em>', near_p: 'The house sits in a quiet lane of the old town. The main sights are minutes away.',
+        n1: 'Po-i-Kalyan', n1_d: '10 min walk', n2: 'Trading domes', n2_d: '5 min', n3: 'The Ark', n3_d: '15 min', n4: 'Bukhara at night', n4_d: 'nearby',
+        t1: 'Airport', t1_d: '15 min', t2: 'Kagan station', t2_d: '25 min', t3: 'Samarkand', t3_d: '3.5 h by transfer',
+        rev_h: 'What <em>guests</em> say', rev_sample: 'Layout example — not real reviews', score: 'sample rating',
+        rv1: 'Like living in a museum, but with a hot shower and a delicious breakfast.', rv1_n: 'Anna', rv1_a: 'Sample · Russia',
+        rv2: 'The hosts met us at the station at night and showed us around. We will be back!', rv2_n: 'Markus', rv2_a: 'Sample · Germany',
+        rv3: 'Quiet, clean, and Lyabi-Hauz is a couple of minutes away. Best choice in Bukhara.', rv3_n: 'Dinara', rv3_a: 'Sample · Kazakhstan',
+        book_h: 'Book <em>directly</em>', book_p: 'No booking-site fees — the best price and a fast reply in your messenger.',
+        addr: 'Bukhara, old town (fictional address)', hours: 'We reply 8:00–23:00',
+        form_h: 'Booking request', f_name: 'Your name', f_in: 'Check-in', f_out: 'Check-out', f_room: 'Room', f_guests: 'Guests', f_send: 'Send request',
         f_note: 'Your request goes straight to the host on Telegram or WhatsApp.',
         demo_alert: 'This is a demo site: on a real site the request goes to the host on Telegram/WhatsApp.',
-        foot: '© Namuna Hovli — guesthouse demo website. All data is fictional.'
+        foot: 'Guesthouse demo website. All data is fictional.', credits: 'Photos: Wikimedia Commons —'
       },
       uz: {
-        demo: '<b>Demo sayt</b> — mijozlarga ko‘rsatish uchun namuna. Nomi, narxlar va kontaktlar o‘ylab topilgan, bron ishlamaydi.',
-        m_rooms: 'Xonalar', m_feats: 'Qulayliklar', m_near: 'Yaqin atrofda', m_book: 'Bron qilish',
+        demo: '<b>Demo sayt</b> — mijozlarga ko‘rsatish uchun namuna. Nomi, narxlar, sharhlar va kontaktlar o‘ylab topilgan; rasmlar Wikimedia Commons’dan.',
+        m_about: 'Uy haqida', m_rooms: 'Xonalar', m_feats: 'Qulayliklar', m_near: 'Yaqin atrofda', m_rev: 'Sharhlar', m_book: 'Bron qilish',
+        cta: 'Bron qilish', cta2: 'Xonalarni ko‘rish', check: 'Sanalarni tekshirish',
         kicker: 'Mehmon uyi · Buxoro eski shahri',
-        sub: 'Ayvonli an’anaviy hovli, naqshinkor shiftlar va sokinlik — Labi Hovuzdan uch daqiqa.',
-        cta: 'Bron qilish', cta2: 'Xonalarni ko‘rish',
-        b1: 'xona', b2: 'Labi Hovuzgacha', b3: 'doim aloqada',
-        rooms_h: 'Qadimiy uydagi shinam xonalar', rooms_p: 'Har bir xonada alohida hammom, konditsioner va hovlida nonushta.',
-        r1: 'Standart', r1_p: 'Bir-ikki mehmon uchun. Ikki kishilik yoki alohida karavotlar.',
-        r2: 'Delyuks', r2_p: 'Naqshinkor shiftli, derazalari hovliga qaragan keng xona.',
-        r3: 'Oilaviy', r3_p: '4 mehmongacha: ikki xona, bolali oilalar uchun qulay.',
-        night: 'bir kecha, nonushta bilan',
-        feats_h: 'Sayohat uchun hamma narsa',
-        f1: 'Uy nonushtasi', f1_p: 'Issiq non, mevalar, shirinliklar va hovlida choy.',
+        h1: 'Namuna <em>Hovli</em>',
+        sub: 'Ayvonli qadimiy hovli, naqshinkor shiftlar va sokinlik — Labi Hovuzdan uch daqiqa.',
+        century: 'asr',
+        about_h: 'Vaqt <em>sekinlashadigan</em> uy',
+        about_p1: 'An’anaviy Buxoro uyini ehtiyotkorlik bilan tikladik: o‘ymakor ustunlar, ganch bezaklar, qo‘lda bo‘yalgan yog‘och shiftlar.',
+        about_p2: 'Tong hovlida choy va issiq non bilan boshlanadi, kechqurun esa yoritilgan gumbaz va minoralargacha piyoda boriladi.',
+        s1: 'shinam xona', s2: 'Labi Hovuzgacha', s3: 'o‘rtacha baho',
+        rooms_h: '<em>O‘ziga xos</em> xonalar', rooms_p: 'Har bir xonada alohida hammom, konditsioner va hovlida nonushta.',
+        r1: 'Standart', r1_tag: '2 mehmongacha', r1_p: 'Milliy matolar bilan bezatilgan iliq xona — sayrdan keyin dam olish uchun.',
+        r2: 'Delyuks', r2_tag: 'Eng mashhur', r2_p: 'Naqshinkor shiftli, derazalari hovliga qaragan keng xona.',
+        r3: 'Oilaviy lyuks', r3_tag: '4 mehmongacha', r3_p: 'O‘ymakor tokchali ikki xona — oila yoki do‘stlar uchun qulay.',
+        a_bath: 'Alohida hammom', a_ac: 'Konditsioner', a_court: 'Hovliga qaragan', a_2rooms: '2 xona',
+        night: 'bir kecha, nonushta bilan', book_it: 'Tanlash →',
+        quote: '«Buxoro — tomosha qilinadigan shahar emas. Bu yashaladigan shahar».', quote_c: 'Tungi Buxoro · uydan 2 daqiqa',
+        feats_h: 'Dam olishingiz <em>uchun</em> hammasi',
+        f1: 'Uy nonushtasi', f1_p: 'Issiq non, mevalar, mahalliy shirinliklar va hovlida choy.',
         f2: 'Transfer', f2_p: 'Aeroport yoki vokzaldan kutib olamiz, Samarqand va Xivaga olib boramiz.',
         f3: 'Ekskursiyalar', f3_p: 'Sizning tilingizda gid topib beramiz.',
-        f4: 'Bepul Wi-Fi', f4_p: 'Barcha xonalarda va hovlida tezkor internet.',
+        f4: 'Tezkor Wi-Fi', f4_p: 'Barcha xonalarda va hovlida bepul internet.',
         f5: 'Konditsioner', f5_p: 'Har bir xonada — Buxoro yozida usiz bo‘lmaydi.',
-        f6: 'Kir yuvish', f6_p: 'Kiyimlarni kichik haq evaziga yuvib, dazmollab beramiz.',
-        near_h: 'Butun Buxoro — piyoda', near_p: 'Uy eski shaharning sokin ko‘chasida. Asosiy obidalar bir necha daqiqada.',
-        n1: 'Labi Hovuz', n1_d: '3 daq', n2: 'Savdo gumbazlari', n2_d: '5 daq', n3: 'Poi Kalon', n3_d: '10 daq',
-        n4: 'Ark', n4_d: '15 daq', n5: 'Vokzal (Kogon)', n5_d: 'mashinada 25 daq', n6: 'Aeroport', n6_d: 'mashinada 15 daq',
-        rev_e: 'Sharhlar', rev_h: 'Mehmonlar fikri', rev_sample: 'Bezak namunasi — haqiqiy sharhlar emas',
-        rv1: '«Xuddi muzeyda yashagandek, lekin issiq dush va mazali nonushta bilan».', rv1_a: 'Namuna sharh · Rossiya',
-        rv2: '«Mezbonlar kechasi vokzalda kutib olib, hammasini ko‘rsatishdi. Yana kelamiz!»', rv2_a: 'Namuna sharh · Germaniya',
-        rv3: '«Sokin, toza, Labi Hovuzgacha esa bir-ikki daqiqa».', rv3_a: 'Namuna sharh · Qozog‘iston',
-        book_h: 'To‘g‘ridan-to‘g‘ri bron qiling', book_p: 'Bron saytlari komissiyasisiz — WhatsApp yoki Telegramga yozing, tez javob beramiz.',
-        addr: 'Buxoro, eski shahar (manzil o‘ylab topilgan)',
-        f_name: 'Ismingiz', f_in: 'Kelish', f_out: 'Ketish', f_room: 'Xona', f_guests: 'Mehmonlar', f_send: 'So‘rov yuborish',
+        f6: 'Sokin hovli', f6_p: 'Tok soyasi, ayvon va kechki choy uchun so‘ri.',
+        near_h: 'Butun Buxoro — <em>piyoda</em>', near_p: 'Uy eski shaharning sokin ko‘chasida. Asosiy obidalar bir necha daqiqada.',
+        n1: 'Poi Kalon', n1_d: 'piyoda 10 daq', n2: 'Savdo gumbazlari', n2_d: '5 daq', n3: 'Ark', n3_d: '15 daq', n4: 'Tungi Buxoro', n4_d: 'yaqin',
+        t1: 'Aeroport', t1_d: '15 daq', t2: 'Kogon vokzali', t2_d: '25 daq', t3: 'Samarqand', t3_d: 'transferda 3,5 soat',
+        rev_h: '<em>Mehmonlar</em> fikri', rev_sample: 'Bezak namunasi — haqiqiy sharhlar emas', score: 'namuna reyting',
+        rv1: 'Xuddi muzeyda yashagandek, lekin issiq dush va mazali nonushta bilan.', rv1_n: 'Anna', rv1_a: 'Namuna · Rossiya',
+        rv2: 'Mezbonlar kechasi vokzalda kutib olib, hammasini ko‘rsatishdi. Albatta qaytamiz!', rv2_n: 'Markus', rv2_a: 'Namuna · Germaniya',
+        rv3: 'Sokin, toza, Labi Hovuzgacha bir-ikki daqiqa. Buxorodagi eng yaxshi tanlov.', rv3_n: 'Dinara', rv3_a: 'Namuna · Qozog‘iston',
+        book_h: 'To‘g‘ridan-to‘g‘ri <em>bron qiling</em>', book_p: 'Bron saytlari komissiyasisiz — eng yaxshi narx va messenjerda tez javob.',
+        addr: 'Buxoro, eski shahar (manzil o‘ylab topilgan)', hours: '8:00 dan 23:00 gacha javob beramiz',
+        form_h: 'Bron uchun so‘rov', f_name: 'Ismingiz', f_in: 'Kelish', f_out: 'Ketish', f_room: 'Xona', f_guests: 'Mehmonlar', f_send: 'So‘rov yuborish',
         f_note: 'So‘rov mezbonga Telegram yoki WhatsApp orqali boradi.',
         demo_alert: 'Bu demo sayt: haqiqiy saytda so‘rov mezbonga Telegram/WhatsApp orqali boradi.',
-        foot: '© Namuna Hovli — mehmon uyi demo sayti. Barcha ma’lumotlar o‘ylab topilgan.'
+        foot: 'Mehmon uyi demo sayti. Barcha ma’lumotlar o‘ylab topilgan.', credits: 'Rasmlar: Wikimedia Commons —'
       }
     };
 
@@ -361,8 +583,22 @@
     }
     document.querySelectorAll('.langs button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.l)));
     document.querySelectorAll('[data-demo]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); alert(T[lang].demo_alert); }));
-    document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); alert(T[lang].demo_alert); });
+    ['form', 'quick'].forEach(id => document.getElementById(id).addEventListener('submit', e => {
+      e.preventDefault();
+      if (id === 'quick') document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+      else alert(T[lang].demo_alert);
+    }));
     setLang(lang);
+
+    // меню становится плотным при прокрутке
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('fixed', window.scrollY > window.innerHeight * 0.6);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // плавное появление блоков
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 
 </body>
