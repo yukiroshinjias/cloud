@@ -3,21 +3,348 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Мой сайт</title>
+  <title>W124 — Легенда</title>
+  <meta name="description" content="Фан-страница, посвящённая Mercedes-Benz W124 (1984–1997).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #f5f5f7; --fg: #1d1d1f; --accent: #0071e3; }
-    @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #eee; --accent: #4da3ff; } }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-           background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; padding: 16px; }
-    h1 { color: var(--accent); margin: 0 0 8px; }
+    :root {
+      --bg: #0d0f12;
+      --bg-2: #15181d;
+      --fg: #e9e6df;
+      --muted: #8e939b;
+      --line: #2a2f37;
+      --accent: #c9a96e;
+      --paint: #3a4a5c;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Inter, system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+
+    /* ---------- Обложка ---------- */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 48px 16px 32px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 100%, #1f2733 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 0%, #1a1d22 0%, transparent 70%),
+        var(--bg);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 16px;
+      opacity: 0;
+      animation: up .9s .1s ease-out forwards;
+    }
+    .title {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(88px, 22vw, 260px);
+      line-height: .85;
+      margin: 0;
+      letter-spacing: -.02em;
+      background: linear-gradient(180deg, #ffffff 0%, #b9b4a8 55%, #6b6860 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0;
+      animation: up 1s .25s ease-out forwards;
+    }
+    .subtitle {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-style: italic;
+      font-size: clamp(18px, 3vw, 28px);
+      color: var(--muted);
+      margin: 16px 0 0;
+      opacity: 0;
+      animation: up 1s .45s ease-out forwards;
+    }
+    .car {
+      width: min(960px, 100%);
+      margin-top: clamp(24px, 5vh, 56px);
+      opacity: 0;
+      animation: drive 1.6s .6s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    .car svg { width: 100%; height: auto; display: block; }
+    .road {
+      width: min(1100px, 100%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+      margin-top: -2px;
+    }
+    .years {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 24px;
+      font-size: 13px;
+      letter-spacing: .3em;
+      color: var(--muted);
+    }
+    .years b { color: var(--fg); font-weight: 600; }
+    .scroll {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .scroll::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 28px;
+      margin: 8px auto 0;
+      background: var(--muted);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    @keyframes drive { from { opacity: 0; transform: translateX(-12%); } to { opacity: 1; transform: none; } }
+    @keyframes pulse { 0%,100% { opacity: .2; } 50% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; opacity: 1 !important; }
+    }
+
+    /* ---------- Секции ---------- */
+    section { padding: 88px 16px; }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 0 0 8px;
+    }
+    .lead { color: var(--muted); max-width: 640px; margin: 0 0 48px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .stat {
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stat .num {
+      font-family: "Playfair Display", serif;
+      font-size: 44px;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .stat .lbl { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+    .alt { background: var(--bg-2); }
+    .bodies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .body-card {
+      border: 1px solid var(--line);
+      padding: 24px;
+      transition: border-color .3s, transform .3s;
+    }
+    .body-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .code { font-size: 12px; letter-spacing: .3em; color: var(--accent); }
+    .body-card h3 { font-family: "Playfair Display", serif; font-weight: 500; font-size: 24px; margin: 8px 0; }
+    .body-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .quote {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: 1.3;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .quote span { display: block; margin-top: 16px; font-family: Inter, sans-serif; font-style: normal; font-size: 13px; letter-spacing: .3em; color: var(--muted); }
+
+    footer {
+      padding: 32px 16px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Привет! Сайт работает 🌍</h1>
-    <p>Открыт через GitHub Pages из любой точки мира.</p>
-    <p id="t"></p>
-  </main>
-  <script>document.getElementById('t').textContent = 'Сейчас: ' + new Date().toLocaleString('ru-RU');</script>
+
+  <header class="hero">
+    <p class="eyebrow">Mercedes-Benz · 1984 — 1997</p>
+    <h1 class="title">W124</h1>
+    <p class="subtitle">Последний, который строили на века</p>
+
+    <div class="car" aria-hidden="true">
+      <!-- Стилизованный силуэт седана: прямые линии, длинный капот, вертикальная решётка -->
+      <svg viewBox="0 0 960 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="paint" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#6d7f93"/>
+            <stop offset=".45" stop-color="#3a4a5c"/>
+            <stop offset="1" stop-color="#1b232d"/>
+          </linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2b3644"/>
+            <stop offset=".5" stop-color="#11161d"/>
+            <stop offset="1" stop-color="#3b4859"/>
+          </linearGradient>
+          <radialGradient id="shadow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#000" stop-opacity=".7"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fff6d8" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#fff6d8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse cx="480" cy="268" rx="430" ry="18" fill="url(#shadow)"/>
+
+        <!-- свет фар -->
+        <path d="M905 196 L960 176 L960 236 Z" fill="url(#beam)"/>
+
+        <!-- кузов -->
+        <path d="M58 214
+                 L62 178 Q66 166 82 164
+                 L200 156
+                 L292 96 Q300 90 312 89
+                 L610 86 Q624 86 634 94
+                 L716 154
+                 L880 162 Q902 164 906 180
+                 L910 214 Q910 226 898 228
+                 L58 228 Q50 226 58 214 Z"
+              fill="url(#paint)"/>
+
+        <!-- окна -->
+        <path d="M222 156 L300 104 Q306 100 314 100 L446 98 L446 156 Z" fill="url(#glass)"/>
+        <path d="M462 98 L604 97 Q614 97 621 103 L690 156 L462 156 Z" fill="url(#glass)"/>
+        <rect x="446" y="98" width="16" height="58" fill="#0e1217"/>
+
+        <!-- молдинг (знаменитые боковые накладки) -->
+        <rect x="66" y="190" width="836" height="16" rx="3" fill="#2a2f36"/>
+        <rect x="66" y="190" width="836" height="2" fill="#5b636e"/>
+
+        <!-- линии дверей -->
+        <path d="M454 160 L454 226 M712 162 L708 226" stroke="#1a222b" stroke-width="2"/>
+
+        <!-- ручки -->
+        <rect x="400" y="168" width="34" height="5" rx="2" fill="#9aa3ad"/>
+        <rect x="652" y="168" width="34" height="5" rx="2" fill="#9aa3ad"/>
+
+        <!-- зеркало -->
+        <path d="M698 146 L724 144 L726 156 L702 158 Z" fill="#2a3542"/>
+
+        <!-- фара и фонарь -->
+        <rect x="882" y="170" width="24" height="16" rx="2" fill="#f4ecd2"/>
+        <rect x="58" y="170" width="20" height="16" rx="2" fill="#8c1d1d"/>
+
+        <!-- блик по крыше -->
+        <path d="M318 92 L606 89" stroke="#c4d0dc" stroke-opacity=".5" stroke-width="2"/>
+        <path d="M82 166 L200 158 M716 156 L880 164" stroke="#a9b6c3" stroke-opacity=".35" stroke-width="2"/>
+
+        <!-- колёса -->
+        <g>
+          <circle cx="210" cy="228" r="46" fill="#0b0d10"/>
+          <circle cx="210" cy="228" r="30" fill="#4c5560"/>
+          <circle cx="210" cy="228" r="30" fill="none" stroke="#8e98a3" stroke-width="2"/>
+          <g stroke="#2c333b" stroke-width="3">
+            <path d="M210 200 V256 M182 228 H238 M190 208 L230 248 M230 208 L190 248"/>
+          </g>
+          <circle cx="210" cy="228" r="8" fill="#9aa3ad"/>
+        </g>
+        <g>
+          <circle cx="760" cy="228" r="46" fill="#0b0d10"/>
+          <circle cx="760" cy="228" r="30" fill="#4c5560"/>
+          <circle cx="760" cy="228" r="30" fill="none" stroke="#8e98a3" stroke-width="2"/>
+          <g stroke="#2c333b" stroke-width="3">
+            <path d="M760 200 V256 M732 228 H788 M740 208 L780 248 M780 208 L740 248"/>
+          </g>
+          <circle cx="760" cy="228" r="8" fill="#9aa3ad"/>
+        </g>
+      </svg>
+    </div>
+    <div class="road"></div>
+
+    <div class="years"><span><b>1984</b> старт</span><span>·</span><span><b>1997</b> финал</span></div>
+
+    <a class="scroll" href="#facts">Листай</a>
+  </header>
+
+  <section id="facts">
+    <div class="wrap">
+      <h2>В цифрах</h2>
+      <p class="lead">Средний класс, который задал планку на десятилетия: строгий дизайн бюро Бруно Сакко, безупречная аэродинамика и инженерный запас прочности.</p>
+      <div class="stats">
+        <div class="stat"><div class="num">2,5 млн+</div><div class="lbl">выпущено автомобилей</div></div>
+        <div class="stat"><div class="num">0,29</div><div class="lbl">коэффициент Cx седана</div></div>
+        <div class="stat"><div class="num">13 лет</div><div class="lbl">на конвейере</div></div>
+        <div class="stat"><div class="num">1 000 000</div><div class="lbl">км — обычный пробег для дизельных такси</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Кузова</h2>
+      <p class="lead">Одна платформа — пять характеров.</p>
+      <div class="bodies">
+        <div class="body-card"><div class="code">W124</div><h3>Седан</h3><p>Основа семейства и символ эпохи. Такси, служебный автомобиль, семейная машина.</p></div>
+        <div class="body-card"><div class="code">S124</div><h3>Универсал</h3><p>T-модель с огромным багажником и опциональным третьим рядом сидений.</p></div>
+        <div class="body-card"><div class="code">C124</div><h3>Купе</h3><p>Без центральной стойки: опускаешь все стёкла — и линия крыши парит.</p></div>
+        <div class="body-card"><div class="code">A124</div><h3>Кабриолет</h3><p>Появился в 1991 году. Сегодня — один из самых желанных вариантов.</p></div>
+        <div class="body-card"><div class="code">V124</div><h3>Лимузин</h3><p>Удлинённая версия на шесть-восемь мест для отелей и посольств.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>500 E</h2>
+      <p class="lead">Волк в овечьей шкуре. Совместный проект с Porsche: V8 объёмом 5,0 литра, расширенные крылья и почти неотличимый от обычного седана облик. Собирали частично в Цуффенхаузене.</p>
+      <div class="stats">
+        <div class="stat"><div class="num">V8</div><div class="lbl">мотор M119, 5,0 л</div></div>
+        <div class="stat"><div class="num">326</div><div class="lbl">л.с.</div></div>
+        <div class="stat"><div class="num">250</div><div class="lbl">км/ч, электронный ограничитель</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <p class="quote">«Его не продают — его передают.»<span>Народная мудрость автолюбителей</span></p>
+  </section>
+
+  <footer>
+    Неофициальная фан-страница. Не связана с Mercedes-Benz Group AG. Иллюстрация автомобиля стилизована.
+  </footer>
+
 </body>
 </html>
