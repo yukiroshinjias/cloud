@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой сайт</title>
+  <style>
+    :root { --bg: #f5f5f7; --fg: #1d1d1f; --accent: #0071e3; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #eee; --accent: #4da3ff; } }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+           background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; padding: 16px; }
+    h1 { color: var(--accent); margin: 0 0 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Привет! Сайт работает 🌍</h1>
+    <p>Открыт через GitHub Pages из любой точки мира.</p>
+    <p id="t"></p>
+  </main>
+  <script>document.getElementById('t').textContent = 'Сейчас: ' + new Date().toLocaleString('ru-RU');</script>
+</body>
+</html>
