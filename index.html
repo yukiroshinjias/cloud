@@ -194,6 +194,12 @@
 
     .mods-link { display: block; max-width: 420px; text-decoration: none; }
 
+    .eng-group { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin: 40px 0 16px; }
+    .eng-group:first-of-type { margin-top: 0; }
+    .body-card .hp { margin-top: 12px; font-family: "Playfair Display", serif; font-size: 22px; color: var(--accent); }
+    .eng-note { margin: 32px 0 0; font-size: 13px; color: var(--muted); }
+    .eng-note a { color: var(--accent); }
+
     .quote {
       text-align: center;
       font-family: "Playfair Display", serif;
@@ -262,7 +268,34 @@
     </div>
   </section>
 
-  <section>
+  <section id="engines">
+    <div class="wrap">
+      <h2>Моторы</h2>
+      <p class="lead">Что ставили на W124 с завода — от неубиваемых дизелей такси до V8, собранного вместе с Porsche.</p>
+
+      <h3 class="eng-group">Бензиновые</h3>
+      <div class="bodies">
+        <div class="body-card"><div class="code">M102</div><h3>R4 · 2,0–2,3 л</h3><p>200, 200 E, 230 E · 8 клапанов</p><div class="hp">105–136 л.с.</div></div>
+        <div class="body-card"><div class="code">M111</div><h3>R4 · 2,0–2,2 л</h3><p>E 200, E 220 · 16 клапанов, после рестайлинга</p><div class="hp">136–150 л.с.</div></div>
+        <div class="body-card"><div class="code">M103</div><h3>R6 · 2,6–3,0 л</h3><p>260 E, 300 E, 300 CE · 12 клапанов</p><div class="hp">160–188 л.с.</div></div>
+        <div class="body-card"><div class="code">M104</div><h3>R6 · 2,8–3,6 л</h3><p>300 E-24, E 280, E 320, E 36 AMG · 24 клапана</p><div class="hp">193–272 л.с.</div></div>
+        <div class="body-card"><div class="code">M119</div><h3>V8 · 4,2–5,0 л</h3><p>400 E / E 420, 500 E / E 500 · 32 клапана</p><div class="hp">268–326 л.с.</div></div>
+      </div>
+
+      <h3 class="eng-group">Дизельные</h3>
+      <div class="bodies">
+        <div class="body-card"><div class="code">OM601</div><h3>R4 · 2,0 л</h3><p>200 D, E 200 Diesel</p><div class="hp">72–75 л.с.</div></div>
+        <div class="body-card"><div class="code">OM602</div><h3>R5 · 2,5 л</h3><p>250 D, 250 Turbodiesel</p><div class="hp">90–126 л.с.</div></div>
+        <div class="body-card"><div class="code">OM603</div><h3>R6 · 3,0 л</h3><p>300 D, 300 D Turbo</p><div class="hp">109–147 л.с.</div></div>
+        <div class="body-card"><div class="code">OM605</div><h3>R5 · 2,5 л</h3><p>E 250 Diesel · 4 клапана на цилиндр</p><div class="hp">113 л.с.</div></div>
+        <div class="body-card"><div class="code">OM606</div><h3>R6 · 3,0 л</h3><p>E 300 Diesel · 4 клапана на цилиндр</p><div class="hp">136 л.с.</div></div>
+      </div>
+
+      <p class="eng-note">Мощность зависит от года, рынка и наличия катализатора. Если ставишь M111 с ЭБУ Delphi MR-140, распиновка есть в разделе <a href="ecu/">ЭБУ</a>.</p>
+    </div>
+  </section>
+
+  <section class="alt">
     <div class="wrap">
       <h2>500 E</h2>
       <p class="lead">Волк в овечьей шкуре. Совместный проект с Porsche: V8 объёмом 5,0 литра, расширенные крылья и почти неотличимый от обычного седана облик. Собирали частично в Цуффенхаузене.</p>
@@ -274,7 +307,7 @@
     </div>
   </section>
 
-  <section class="alt">
+  <section>
     <div class="wrap">
       <h2>Гараж</h2>
       <p class="lead">Журнал доработок моей машины и справочник по электрике.</p>
@@ -286,7 +319,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="alt">
     <p class="quote">«Его не продают — его передают.»<span>Народная мудрость автолюбителей</span></p>
   </section>
 
